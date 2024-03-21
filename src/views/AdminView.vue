@@ -1,11 +1,6 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  $END$
+  <div class="about">
+    <h1>This is Admin</h1>
+  </div>
 </template>
-
-<style scoped>
-
-</style>
+<script lang="ts"></script>

@@ -7,27 +7,19 @@
     <!-- 右侧登录 -->
     <div class="login-form-container">
       <!-- 登录框 -->
-      <a-typography>
-        <a-typography-title> 登录 </a-typography-title>
-        <a-typography-text type="secondary">
-          请填入管理员账号和密码
-        </a-typography-text>
-      </a-typography>
+      <p class="loginText">登录</p>
+      <p class="loginTipText">请填入管理员账号和密码</p>
       <a-form :model="form" :style="{ width: '600px' }" @submit="handleSubmit">
-        <a-form-item
-          field="name"
-          tooltip="Please enter username"
-          label="Username"
-        >
+        <a-form-item field="name" label="Username">
           <a-input
             v-model="form.name"
             placeholder="please enter your username..."
           />
         </a-form-item>
-        <a-form-item field="post" label="Post">
+        <a-form-item field="password" label="password">
           <a-input
             v-model="form.password"
-            placeholder="please enter your post..."
+            placeholder="please enter your password..."
           />
         </a-form-item>
         <a-form-item>
@@ -52,22 +44,22 @@ const onSubmit = () => {
 </script>
 
 <style scoped>
+.loginText {
+  margin-bottom: 5px;
+  font-size: 48px;
+  font-weight: bolder;
+}
+.loginTipText {
+  margin-bottom: 25px;
+  font-size: 12px;
+  font-weight: lighter;
+}
 .login-form-container {
   flex: 9;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
-}
-.loginText {
-  margin-bottom: 5px;
-  font-size: larger;
-  font-weight: bolder;
-}
-.loginTipText {
-  margin-bottom: 25px;
-  font-size: small;
-  font-weight: lighter;
 }
 .login-page {
   display: flex;
