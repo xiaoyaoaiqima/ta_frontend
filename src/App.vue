@@ -1,5 +1,13 @@
 <template>
-  <div id="app"><BasicLayout /></div>
+  <div id="app">
+    <template v-if="route.path.startsWith('/user')">
+      <router-view />
+    </template>
+    <template v-else>
+      <BasicLayout />
+      <!--      <ProBasicLayout />-->
+    </template>
+  </div>
 </template>
 
 <style>
@@ -13,18 +21,22 @@
 </style>
 <script setup lang="ts">
 import BasicLayout from "@/layouts/BasicLayout.vue";
-import { useRoute, useRouter } from "vue-router";
-import store from "@/store";
+import { useRoute } from "vue-router";
+import { onMounted } from "vue";
+import ProBasicLayout from "@/layouts/ProBasicLayout.vue";
 
-const router = useRouter();
 const route = useRoute();
-router.beforeEach((to, from, next) => {
-  if (to.meta?.access === "canAdmin") {
-    if (store.state.user.loginUser?.role !== "admin") {
-      next("noAuth");
-      return;
-    }
-  }
-  next();
+const doInit = () => {
+  console.log(
+    "  _________                .____    .__        \n" +
+      " /   _____/____    _____   |    |   |__| ____  \n" +
+      " \\_____  \\\\__  \\  /     \\  |    |   |  |/    \\ \n" +
+      " /        \\/ __ \\|  Y Y  \\ |    |___|  |   |  \\\n" +
+      "/_______  (____  /__|_|  / |_______ \\__|___|  /\n" +
+      "        \\/     \\/      \\/          \\/       \\/ "
+  );
+};
+onMounted(() => {
+  doInit();
 });
 </script>

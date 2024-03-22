@@ -17,9 +17,9 @@
               <div class="title">TA demo</div>
             </div>
           </a-menu-item>
-          <a-menu-item v-for="item in routes" :key="item.path">{{
-            item.name
-          }}</a-menu-item>
+          <a-menu-item v-for="item in parentRoutes" :key="item.path">
+            {{ item.name }}
+          </a-menu-item>
         </a-menu>
       </div></a-col
     >
@@ -30,12 +30,15 @@
 </template>
 
 <script setup lang="ts">
-import { routes } from "@/router/routes";
+import { parentRoutes } from "@/router/routes";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { useStore } from "vuex";
+
 const router = useRouter();
 const store = useStore();
+
+console.log(parentRoutes);
 const doMenuClick = (key: string) => {
   router.push({
     path: key,
@@ -43,9 +46,6 @@ const doMenuClick = (key: string) => {
 };
 router.afterEach((to) => {
   selectedKeys.value = [to.path];
-});
-store.dispatch("user/getLoginUser", {
-  userName: "samlin",
 });
 const selectedKeys = ref(["/"]);
 </script>

@@ -1,5 +1,7 @@
 import { StoreOptions } from "vuex";
 import { type UserInter } from "@/types";
+import { UserControllerService } from "../../generated";
+import ACCESS_ENUM from "@/access/accessEnum";
 
 const defaultLoginUser: UserInter = {
   userName: "未登录",
@@ -12,9 +14,16 @@ export default {
     defaultLoginUser,
   }),
   actions: {
-    getLoginUser({ commit, state }, payload: UserInter) {
-      const { userName, userRole } = payload;
-      commit("updateUser", { userName, userRole });
+    async getLoginUser({ commit, state }, payload) {
+      const res = await UserControllerService.getLoginUserUsingGet();
+      if (res.code === 0) {
+        commit("updateUser", res.data);
+      } else {
+        commit("updateUser", {
+          ...state.loginUser,
+          userRole: ACCESS_ENUM.NOT_LOGIN,
+        });
+      }
     },
   },
   mutations: {

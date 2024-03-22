@@ -4,15 +4,15 @@
       <a-layout-header class="header">
         <a-space>
           <img src="../assets/logo.png" class="logo" alt="111" />
-          <div>鱼 OJ</div>
+          <div>TA demo</div>
         </a-space>
       </a-layout-header>
       <a-layout-content class="content">
         <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
-        <a href="https://yupi.icu" target="_blank">
-          编程导航知识星球 by 程序员鱼皮
+        <a href="https://samlin1010.vercel.app/" target="_blank">
+          Samlin 个人博客网站
         </a>
       </a-layout-footer>
     </a-layout>
